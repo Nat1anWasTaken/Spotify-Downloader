@@ -70,14 +70,14 @@ async def spotify_dl(_, message):
             # sleeeps = await sleep (0.9)
             PForCopy = await message.reply_photo(
                 song.get('cover'),
-                caption=f"🎧 Title : `{song['name']}­`\n🎤 Artist : `{song['artist']}­`\n💽 Album : `{song['album']}­`\n🗓 Release Year: `{song['year']}­`"
+                caption=f"🎧 Title: `{song['name']}­`\n🎤 Artist: `{song['artist']}­`\n💽 Album: `{song['album']}­`\n🗓 Release Year: `{song['year']}­`"
             )
             path = await download_songs(song, randomdir)
             thumbnail = await thumb_down(song.get('cover'), song.get('deezer_id'))
             dForChat = await message.reply_chat_action(enums.ChatAction.UPLOAD_AUDIO)
             audio = EasyID3(path)
             try:
-                audio["TITLE"] = f" {song.get('name')}"
+                audio["TITLE"] = song.get('name')
                 audio["originaldate"] = song.get('year')
                 #  audio["YEAR_OF_RELEASE"] = song.get('year')
                 audio["WEBSITE"] = "https://t.me/Spotify_downloa_bot"
@@ -115,7 +115,7 @@ async def spotify_dl(_, message):
                 # sleeeps = await sleep (0.9)
                 PForCopy = await message.reply_photo(
                     song.get('cover'),
-                    caption=f"🎧 Title : `{song['name']}­`\n🎤 Artist : `{song['artist']}­`\n💽 Album : `{song['album']}­`\n🗓 Release Year: `{song['year']}­`\n🔢 Track No: `{song['playlist_num']}­`\n🔢 Total Track: `{total_tracks}­`"
+                    caption=f"🎧 Title: `{song['name']}­`\n🎤 Artist: `{song['artist']}­`\n💽 Album: `{song['album']}­`\n🗓 Release Year: `{song['year']}­`\n🔢 Track No: `{song['playlist_num']}­`\n🔢 Total Track: `{total_tracks}­`"
                 )
                 path = await download_songs(song, randomdir)
                 thumbnail = await thumb_down(song.get('cover'), song.get('deezer_id'))
@@ -123,7 +123,7 @@ async def spotify_dl(_, message):
                 sleeping = await sleep(0.8)
                 audio = EasyID3(path)
                 try:
-                    audio["TITLE"] = f" {song.get('name')} "
+                    audio["TITLE"] = song.get('name')
                     audio["originaldate"] = song.get('year')
                     #    audio["YEAR_OF_RELEASE"] = song.get('year')
                     audio["WEBSITE"] = "https://t.me/Spotify_downloa_bot"
@@ -160,14 +160,14 @@ async def spotify_dl(_, message):
                 # sleeeps = await sleep (0.9)
                 PForCopy = await message.reply_photo(
                     song.get('cover'),
-                    caption=f"🎧 Title : `{song['name']}­`\n🎤 Artist : `{song['artist']}­`\n💽 Album : `{song['album']}­`\nq🗓 Release Year: `{song['year']}­`"
+                    caption=f"🎧 Title: `{song['name']}­`\n🎤 Artist: `{song['artist']}­`\n💽 Album: `{song['album']}­`\nq🗓 Release Year: `{song['year']}­`"
                 )
                 path = await download_songs(song, randomdir)
                 thumbnail = await thumb_down(song.get('cover'), song.get('deezer_id'))
                 sleeping = await sleep(0.8)
                 audio = EasyID3(path)
                 try:
-                    audio["TITLE"] = f" {song.get('name')} "
+                    audio["TITLE"] = song.get('name')
                     audio["originaldate"] = song.get('year')
                     #        audio["YEAR_OF_RELEASE"] = song.get('year')
                     audio["WEBSITE"] = "https://t.me/Spotify_downloa_bot"
