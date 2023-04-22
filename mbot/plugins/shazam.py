@@ -1,44 +1,21 @@
 from __future__ import unicode_literals
-from pyrogram import Client , filters 
-from os import environ,execl
-from sys import executable
-from pyrogram.errors import FloodWait 
-from pyrogram.types import Message , InlineKeyboardMarkup, InlineKeyboardButton ,CallbackQuery
-from pyrogram.errors import FloodWait 
-from asyncio import sleep
-#from database.users_chats_db import db
-#from utils import get_size
-from shazamio import Shazam
-#import math
-import asyncio
-import time
-#import shlex
-#import aiofiles
-#import aiohttp
-#import wget
-import os
-#from asgiref.sync import sync_to_async
-from requests import get
-from mbot.utils.util import run_cmd as runcmd
+
 import datetime
-from json import JSONDecodeError
-import requests
-#import ffmpeg 
-from pyrogram.errors import FloodWait, MessageNotModified
-from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
-#from youtubesearchpython import VideosSearch
-import yt_dlp
-#from youtube_search import YoutubeSearch
-import requests
-from typing import Tuple
-from pyrogram import filters
-from pyrogram import Client
-#from mbot import OWNER_ID as ADMINS
+import os
 import time
-from apscheduler.schedulers.background import BackgroundScheduler
-from mbot.utils.shazam import humanbytes, edit_or_reply, fetch_audio
-NOT_SUPPORT = [ ]
+
+from pyrogram import Client
+from pyrogram import filters
+from requests import get
+from shazamio import Shazam
+
+from mbot.utils.shazam import humanbytes
+from mbot.utils.util import run_cmd as runcmd
+
+NOT_SUPPORT = []
 ADMINS = 1794941609
+
+
 def get_arg(message):
     msg = message.text
     msg = msg.replace(" ", "", 1) if msg[1] == " " else msg
@@ -46,11 +23,14 @@ def get_arg(message):
     if " ".join(split[1:]).strip() == "":
         return ""
     return " ".join(split[1:])
-#@sync_to_async
-def thumb_down(album_id,img):
-    with open(f"/tmp/thumbnails/{album_id}.jpg","wb") as file:
+
+
+# @sync_to_async
+def thumb_down(album_id, img):
+    with open(f"/tmp/thumbnails/{album_id}.jpg", "wb") as file:
         file.write(get(img).content)
     return f"/tmp/thumbnails/{album_id}.jpg"
+
 
 def time_to_seconds(time):
     stringt = str(time)
@@ -72,6 +52,7 @@ async def shazam(file):
     title = track.get("title")
     return image, by, title
 
+
 async def convert_to_audio(vid_path):
     stark_cmd = f"ffmpeg -i {vid_path} -map 0:a friday.mp3"
     await runcmd(stark_cmd)
@@ -80,7 +61,8 @@ async def convert_to_audio(vid_path):
         return None
     return final_warner
 
-@Client.on_message(filters.command(["find", "shazam"] ))
+
+@Client.on_message(filters.command(["find", "shazam"]))
 async def shazam_(client, message):
     stime = time.time()
     msg = await message.reply_text("`Shazaming This Song.")
@@ -121,4 +103,4 @@ async def shazam_(client, message):
         await msg.edit(caption)
     os.remove(music_file)
     if thumb:
-       os.remove(thumb)
+        os.remove(thumb)

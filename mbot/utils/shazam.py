@@ -1,36 +1,13 @@
-import pytz
-import inspect
-import logging
-from datetime import datetime
-import os
-import math
-import time
-import shlex
 import asyncio
-from math import ceil
-from pyrogram import Client
-from traceback import format_exc
-from typing import Tuple, Union
-from pyrogram.errors import FloodWait, MessageNotModified
-from pyrogram.types import (
-    InlineKeyboardButton,
-    InlineQueryResultArticle,
-    InputTextMessageContent,
-    Message,
-)
-import mimetypes
 import functools
-import multiprocessing
-from concurrent.futures import ThreadPoolExecutor
-import sys
-import traceback
-from functools import wraps
-from typing import Callable, Coroutine, Dict, List, Tuple, Union
-import aiohttp
-from PIL import Image
-from pyrogram import Client as pbot
+import math
+import shlex
+import time
+from typing import Tuple, Union
+
 from pyrogram.errors import FloodWait, MessageNotModified
-from pyrogram.types import Chat, Message, User
+from pyrogram.types import Message
+
 
 async def delete_or_pass(message):
     """Delete Message If Its From Self Else Just Pass"""
@@ -52,11 +29,13 @@ def humanbytes(size):
         raised_to_pow += 1
     return str(round(size, 2)) + " " + dict_power_n[raised_to_pow] + "B"
 
+
 def run_in_exc(f):
     @functools.wraps(f)
     async def wrapper(*args, **kwargs):
         loop = asyncio.get_running_loop()
         return await loop.run_in_executor(exc_, lambda: f(*args, **kwargs))
+
     return wrapper
 
 
@@ -67,11 +46,11 @@ def time_formatter(milliseconds: int) -> str:
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
     tmp = (
-        ((str(days) + " day(s), ") if days else "")
-        + ((str(hours) + " hour(s), ") if hours else "")
-        + ((str(minutes) + " minute(s), ") if minutes else "")
-        + ((str(seconds) + " second(s), ") if seconds else "")
-        + ((str(milliseconds) + " millisecond(s), ") if milliseconds else "")
+            ((str(days) + " day(s), ") if days else "")
+            + ((str(hours) + " hour(s), ") if hours else "")
+            + ((str(minutes) + " minute(s), ") if minutes else "")
+            + ((str(seconds) + " second(s), ") if seconds else "")
+            + ((str(milliseconds) + " millisecond(s), ") if milliseconds else "")
     )
     return tmp[:-2]
 
@@ -147,6 +126,7 @@ async def fetch_audio(client, message):
         final_warner = await message.reply_to_message.download()
     await lel.delete()
     return final_warner
+
 
 async def edit_or_reply(message, text, parse_mode="md"):
     if message.from_user.id:

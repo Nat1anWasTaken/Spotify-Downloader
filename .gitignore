@@ -1,3 +1,4 @@
 config.env
 bot.log
 __pycache__
+.idea/
