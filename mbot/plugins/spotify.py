@@ -75,6 +75,7 @@ async def spotify_dl(_,message):
             thumbnail = await thumb_down(song.get('cover'),song.get('deezer_id'))
             dForChat = await message.reply_chat_action(enums.ChatAction.UPLOAD_AUDIO)
             audio = FLAC(path)
+            audio["TITLE"] = song.get('name')
             audio["YEAR_OF_RELEASE"] = song.get('year')
             audio["WEBSITE"] = "https://t.me/Spotify_downloa_bot"
             audio["GEEK_SCORE"] = "9"
@@ -114,6 +115,7 @@ async def spotify_dl(_,message):
                 cForChat = await message.reply_chat_action(enums.ChatAction.UPLOAD_AUDIO)
                 sleeping  = await sleep(0.8)
                 audio = FLAC(path)
+                audio["TITLE"] = song.get('name')
                 audio["YEAR_OF_RELEASE"] = song.get('year')
                 audio["WEBSITE"] = "https://t.me/Spotify_downloa_bot"
                 audio["GEEK_SCORE"] = "9"
@@ -150,6 +152,7 @@ async def spotify_dl(_,message):
                 thumbnail = await thumb_down(song.get('cover'),song.get('deezer_id'))
                 sleeping  = await sleep(0.8)
                 audio = FLAC(path)
+                audio["NAME"] = song.get('name')
                 audio["YEAR_OF_RELEASE"] = song.get('year')
                 audio["WEBSITE"] = "https://t.me/Spotify_downloa_bot"
                 audio["GEEK_SCORE"] = "9"
